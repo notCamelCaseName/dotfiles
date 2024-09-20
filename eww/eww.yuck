@@ -1,0 +1,202 @@
+(include "palette.yuck")
+
+(defwidget transition [left-color right-color]
+  (box  :class "triangle"
+        :width 0
+        :height 0
+        :style "border-top-color: ${left-color}; border-right-color: ${right-color}"
+  )
+)
+
+;; Workspaces 
+(deflisten workspaces "scripts/get-workspaces")
+
+(defwidget workspaceWidget []
+  (literal :content workspaces)
+)
+
+;; Time
+(defpoll TIME :interval "5s" 'date +\"%H:%M\"')
+(defpoll DAY  :interval "5s" 'date +\"%a\"')
+(defpoll DATE :interval "5s" 'date +\"%d/%m\"')
+
+(defwidget clock []
+  (box  :halign "center"
+        :space-evenly false
+    (transition :left-color bg
+                :right-color grad2-2
+    )
+    (box  :class "day"
+      DAY
+    )
+    (transition :left-color grad2-2
+                :right-color grad2-1
+    )
+    (box  :class "time"
+      TIME
+    )
+    (transition :left-color grad2-1
+                :right-color grad2-2
+    )
+    (box  :class "date"
+      DATE
+    )
+    (transition :left-color grad2-2
+                :right-color bg
+    )
+  )
+)
+
+;; Volume
+(defpoll volume-icon :interval "1s" 'scripts/get-volume-icon.sh')
+(defpoll volume :interval "1s" 'wpctl get-volume @DEFAULT_AUDIO_SINK@ | sed "s/Volume: /100\\*/g" | tr -d " [MUTED]" | sed "$ s/.*/\\0\\/1/g" | bc')
+(defwidget volume []
+  (box  :class "volume"
+    "${volume-icon} ${volume} %"
+  )
+)
+
+;; Network
+(defpoll connection-name :interval "5s" 'nmcli -t -f NAME c show --active | head -n 1')
+(defwidget network []
+  (box  :class "network"
+    "${connection-name == 'lo' ? 'No connection' : connection-name }"
+  )
+)
+
+;; Greeter
+(defpoll name :interval "60m" "whoami")
+(defwidget greeter []
+  (button :class "greeter"
+          :onclick "wofi&"
+    "Hi ${name}"
+  )
+)
+
+;; Music 
+(deflisten song-title "scripts/get-song-title.sh")
+(deflisten song-artist "scripts/get-song-artist.sh")
+(defwidget music []
+  (box  :space-evenly false
+    (transition :left-color bg
+                :right-color grad2-2
+    )
+    (box :class "song-title" song-title)
+    (transition :left-color grad2-2
+                :right-color grad2-1
+    )
+    (box :class "song-artist" song-artist)
+    (transition :left-color grad2-1
+                :right-color bg
+    )
+
+  )
+)
+
+;; Perf
+(defwidget mem []
+  (box  :class "mem"
+    "Mem : ${round(EWW_RAM.used_mem_perc, 0)} %"
+  )
+)
+
+(defwidget cpu []
+  (box  :class "cpu"
+    "CPU : ${round(EWW_CPU.avg, 0)} %"
+  )
+)
+
+(defwidget battery []
+  (box  :class "battery"
+        :space-evenly false
+    "${
+      EWW_BATTERY.BAT1.status == 'Charging' ? '' :
+      EWW_BATTERY.BAT1.capacity > 75 ? '' :
+      EWW_BATTERY.BAT1.capacity > 50 ? '' :
+      EWW_BATTERY.BAT1.capacity > 25 ? '' :
+      EWW_BATTERY.BAT1.capacity > 10 ? '' : ''
+    } "
+    "${EWW_BATTERY.BAT1.capacity} %"
+  )
+)
+
+
+(defwindow bar-top
+  :monitor 0
+  :exclusive true
+  :geometry (geometry :x "0px"
+                      :y "0px"
+                      :width "100%"
+                      :height "32px"
+                      :anchor "top center")
+  (box  :class "main-container"
+        :halign "fill"
+    (box  :class "left-container"
+          :halign "start"
+          :space-evenly false
+      (workspaceWidget)
+    )
+    (box  :class "middle-container"
+          :halign "center"
+          :space-evenly false
+      (clock)
+    )
+    (box  :class "right-container"
+          :halign "end"
+          :space-evenly false
+      (transition :left-color bg
+                  :right-color grad3-3
+      )
+      (volume)
+      (transition :left-color grad3-3
+                  :right-color grad3-2
+      )
+      (network)
+      (transition :left-color grad3-2
+                  :right-color grad3-1
+      )
+      (systray :spacing 4)
+    )
+  )
+)
+
+
+(defwindow bar-bot
+  :monitor 0
+  :exclusive true
+  :geometry (geometry :x "0px"
+                      :y "0px"
+                      :width "100%"
+                      :height "32px"
+                      :anchor "bottom center")
+  (box  :class "main-container"
+        :halign "fill"
+    (box  :class "left-container"
+          :halign "start"
+          :space-evenly false
+      (greeter)
+      (transition :left-color grad1-1 :right-color bg)
+    )
+    (box  :class "middle-container"
+          :halign "center"
+          :space-evenly false
+      (music)
+    )
+    (box  :class "right-container"
+          :halign "end"
+          :space-evenly false
+      (transition :left-color bg
+                  :right-color grad3-3
+      )
+      (mem)
+      (transition :left-color grad3-3
+                  :right-color grad3-2
+      )
+      (cpu)
+      (transition :left-color grad3-2
+                  :right-color grad3-1
+      )
+      (battery)
+    )
+  )
+)

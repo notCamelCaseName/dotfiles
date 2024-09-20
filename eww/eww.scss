@@ -1,0 +1,96 @@
+@import "palette.scss";
+
+* {
+  all: unset; //Unsets everything so you can style everything from scratch
+}
+
+.main-container {
+  background: $bg;
+  color: $text;
+  font-family: JetbrainsMono, "Font Awesome 6 Free";
+  font-size: 20px;
+}
+
+.workspaces button{
+  padding-left: 1px;
+}
+
+.workspace-active {
+  color: white;
+}
+
+.workspace-inactive {
+  color: $inactive;
+}
+
+.volume {
+  background: $grad3-3;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.network {
+  background: $grad3-2;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.day, .date {
+  background: $grad2-2;
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+.time {
+  background: $grad2-1;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.greeter {
+  background: $grad1-1;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.song-title {
+  background: $grad2-2;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.song-artist {
+  background: $grad2-1;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.mem {
+  background: $grad3-3;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.cpu {
+  background: $grad3-2;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.battery {
+  background: $grad3-1;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.right-container {
+  background: $grad3-1;
+  padding-right: 8px;
+}
+
+.triangle {
+  border-top-width: 32px;
+  border-top-style: solid;
+  border-right-width: 16px;
+  border-right-style: solid;
+}

@@ -1,0 +1,10 @@
+[shell]
+program = "/bin/zsh"
+
+[window]
+padding = { x = 4, y = 4 }
+opacity = 0.8
+
+[font]
+size = 16.0
+normal.family = "JetBrainsMono"

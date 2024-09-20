@@ -1,0 +1,11 @@
+*
+!*/ 
+
+!.gitignore
+
+!alacritty/**
+!cava/config
+!eww/**
+!hypr/**
+!waybar/**
+!wofi/**
