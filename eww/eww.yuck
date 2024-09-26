@@ -1,10 +1,17 @@
-(include "palette.yuck")
-
-(defwidget transition [left-color right-color]
-  (box  :class "triangle"
-        :width 0
-        :height 0
-        :style "border-top-color: ${left-color}; border-right-color: ${right-color}"
+(defwidget transition []
+  (box :width 30 :height 30 :class "transition"
+    (box :width 15 :height 30 :orientation "v"
+      (box  :class "transition-tl"
+      )
+      (box  :class "transition-bl"
+      )
+    )
+    (box :width 15 :height 30 :orientation "v"
+      (box  :class "transition-tr"
+      )
+      (box  :class "transition-br"
+      )
+    )
   )
 )
 
@@ -15,6 +22,12 @@
   (literal :content workspaces)
 )
 
+;; Current window name
+(defpoll WINDOWNAME :interval "1s" "hyprctl activewindow -j")
+(defwidget windowname []
+  "${WINDOWNAME?.title ?: 'No active window'}"
+)
+
 ;; Time
 (defpoll TIME :interval "5s" 'date +\"%H:%M\"')
 (defpoll DAY  :interval "5s" 'date +\"%a\"')
@@ -23,26 +36,16 @@
 (defwidget clock []
   (box  :halign "center"
         :space-evenly false
-    (transition :left-color bg
-                :right-color grad2-2
-    )
     (box  :class "day"
       DAY
     )
-    (transition :left-color grad2-2
-                :right-color grad2-1
-    )
+    (transition)
     (box  :class "time"
       TIME
     )
-    (transition :left-color grad2-1
-                :right-color grad2-2
-    )
+    (transition)
     (box  :class "date"
       DATE
-    )
-    (transition :left-color grad2-2
-                :right-color bg
     )
   )
 )
@@ -78,18 +81,9 @@
 (deflisten song-artist "scripts/get-song-artist.sh")
 (defwidget music []
   (box  :space-evenly false
-    (transition :left-color bg
-                :right-color grad2-2
-    )
     (box :class "song-title" song-title)
-    (transition :left-color grad2-2
-                :right-color grad2-1
-    )
+    (transition)
     (box :class "song-artist" song-artist)
-    (transition :left-color grad2-1
-                :right-color bg
-    )
-
   )
 )
 
@@ -121,12 +115,13 @@
 )
 
 
+;; Actual bars
 (defwindow bar-top
   :monitor 0
   :exclusive true
-  :geometry (geometry :x "0px"
-                      :y "0px"
-                      :width "100%"
+  :geometry (geometry :x "8px"
+                      :y "8px"
+                      :width "1904px"
                       :height "32px"
                       :anchor "top center")
   (box  :class "main-container"
@@ -139,23 +134,14 @@
     (box  :class "middle-container"
           :halign "center"
           :space-evenly false
-      (clock)
+      (windowname)
     )
     (box  :class "right-container"
           :halign "end"
           :space-evenly false
-      (transition :left-color bg
-                  :right-color grad3-3
-      )
       (volume)
-      (transition :left-color grad3-3
-                  :right-color grad3-2
-      )
+      (transition)
       (network)
-      (transition :left-color grad3-2
-                  :right-color grad3-1
-      )
-      (systray :spacing 4)
     )
   )
 )
@@ -164,9 +150,9 @@
 (defwindow bar-bot
   :monitor 0
   :exclusive true
-  :geometry (geometry :x "0px"
-                      :y "0px"
-                      :width "100%"
+  :geometry (geometry :x "8px"
+                      :y "8px"
+                      :width "1904px"
                       :height "32px"
                       :anchor "bottom center")
   (box  :class "main-container"
@@ -174,8 +160,11 @@
     (box  :class "left-container"
           :halign "start"
           :space-evenly false
-      (greeter)
-      (transition :left-color grad1-1 :right-color bg)
+      (mem)
+      (transition)
+      (cpu)
+      (transition)
+      (battery)
     )
     (box  :class "middle-container"
           :halign "center"
@@ -185,18 +174,7 @@
     (box  :class "right-container"
           :halign "end"
           :space-evenly false
-      (transition :left-color bg
-                  :right-color grad3-3
-      )
-      (mem)
-      (transition :left-color grad3-3
-                  :right-color grad3-2
-      )
-      (cpu)
-      (transition :left-color grad3-2
-                  :right-color grad3-1
-      )
-      (battery)
+      (clock)
     )
   )
 )

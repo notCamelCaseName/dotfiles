@@ -4,6 +4,29 @@
   all: unset; //Unsets everything so you can style everything from scratch
 }
 
+.transition {
+  background-color: $transition;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.transition-tl {
+  background-color: $widget-bg;
+  border-bottom-right-radius: 15px;
+}
+.transition-bl {
+  background-color: $widget-bg;
+  border-top-right-radius: 15px;
+}
+.transition-tr {
+  background-color: $widget-bg;
+  border-bottom-left-radius: 15px;
+}
+.transition-br {
+  background-color: $widget-bg;
+  border-top-left-radius: 15px;
+}
+
 .main-container {
   background: $bg;
   color: $text;
@@ -11,86 +34,87 @@
   font-size: 20px;
 }
 
-.workspaces button{
-  padding-left: 1px;
+.workspaces {
+  padding: 2px;
 }
 
 .workspace-active {
-  color: white;
+  color: $widget-bg;
+  background-color: $text;
+  border-radius: 50%;
 }
 
 .workspace-inactive {
-  color: $inactive;
+  color: $text;
 }
 
 .volume {
-  background: $grad3-3;
   padding-left: 4px;
   padding-right: 4px;
 }
 
 .network {
-  background: $grad3-2;
   padding-left: 4px;
   padding-right: 4px;
 }
 
 .day, .date {
-  background: $grad2-2;
-  padding-left: 7px;
-  padding-right: 7px;
+  padding-left: 4px;
+  padding-right: 4px;
 }
 
 .time {
-  background: $grad2-1;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-.greeter {
-  background: $grad1-1;
-  padding-left: 8px;
-  padding-right: 8px;
+  padding-left: 4px;
+  padding-right: 4px;
 }
 
 .song-title {
-  background: $grad2-2;
   padding-left: 4px;
   padding-right: 4px;
 }
 
 .song-artist {
-  background: $grad2-1;
   padding-left: 4px;
   padding-right: 4px;
 }
 
 .mem {
-  background: $grad3-3;
   padding-left: 4px;
   padding-right: 4px;
 }
 
 .cpu {
-  background: $grad3-2;
   padding-left: 4px;
   padding-right: 4px;
 }
 
 .battery {
-  background: $grad3-1;
   padding-left: 4px;
   padding-right: 4px;
 }
 
-.right-container {
-  background: $grad3-1;
-  padding-right: 8px;
+.systray {
+  padding-left: 4px;
+  padding-right: 4px;
 }
 
-.triangle {
-  border-top-width: 32px;
-  border-top-style: solid;
-  border-right-width: 16px;
-  border-right-style: solid;
+.left-container {
+  background: $widget-bg;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 20px;
+}
+
+.middle-container {
+  background: $widget-bg;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 20px;
+}
+
+.right-container {
+  background: $widget-bg;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 20px;
 }

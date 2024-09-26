@@ -1,18 +1,9 @@
-$bg: #2a2d34;
-$text: #ffffff;
-$inactive: #949699;
-$grad1-1: #017d1e;
-$grad1-2: #0b6923;
-$grad1-3: #155529;
-$grad1-4: #1f412e;
-$grad1-5: #2a2d34;
-$grad2-1: #0a6e97;
-$grad2-2: #125d7e;
-$grad2-3: #1a4d65;
-$grad2-4: #223d4c;
-$grad2-5: #2a2d34;
-$grad3-1: #d3420d;
-$grad3-2: #a83c16;
-$grad3-3: #7e3720;
-$grad3-4: #54322a;
-$grad3-5: #2a2d34;
+$color1: #CBCBCD;
+$color2: #1A336E;
+$color3: #16294E;
+$color4: #3B6FCE;
+
+$bg: transparent;
+$text: $color2;
+$widget-bg: $color1;
+$transition: $color4;
