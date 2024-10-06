@@ -103,6 +103,9 @@
   padding-left: 8px;
   padding-right: 8px;
   border-radius: 20px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: $container-border;
 }
 
 .middle-container {
@@ -110,6 +113,9 @@
   padding-left: 8px;
   padding-right: 8px;
   border-radius: 20px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: $container-border;
 }
 
 .right-container {
@@ -117,4 +123,7 @@
   padding-left: 8px;
   padding-right: 8px;
   border-radius: 20px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: $container-border;
 }
