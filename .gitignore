@@ -7,5 +7,6 @@
 !cava/config
 !eww/**
 !hypr/**
+!nvim/**
 !waybar/**
 !wofi/**
