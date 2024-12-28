@@ -1,25 +1,25 @@
-require "nvchad.mappings"
-
--- add yours here
-
 local map = vim.keymap.set
 
-map("n", ";", ":", { desc = "CMD enter command mode" })
-map("i", "jk", "<ESC>")
+-- Launch apps
+map("n", "<C-n>", "<cmd>Neotree toggle=true<CR>", { desc = "Toggle Neotree" })
 
--- Nvim DAP
-map("n", "<Leader>dl", "<cmd>lua require'dap'.step_into()<CR>", { desc = "Debugger step into" })
-map("n", "<Leader>dj", "<cmd>lua require'dap'.step_over()<CR>", { desc = "Debugger step over" })
-map("n", "<Leader>dk", "<cmd>lua require'dap'.step_out()<CR>", { desc = "Debugger step out" })
-map("n", "<Leader>d<space>", "<cmd>lua require'dap'.continue()<CR>", { desc = "Debugger continue" })
-map("n", "<Leader>d<space>", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", { desc = "Debugger toggle breakpoint" })
-map(
-	"n",
-	"<Leader>dd",
-	"<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
-	{ desc = "Debugger set conditional breakpoint" }
-)
-map("n", "<Leader>de", "<cmd>lua require'dap'.terminate()<CR>", { desc = "Debugger reset" })
-map("n", "<Leader>dr", "<cmd>lua require'dap'.run_last()<CR>", { desc = "Debugger run last" })
+-- Terminal
+map("n", "<leader>tt", "<cmd>ToggleTerm direction=tab<CR>", { desc = "Toggle terminal in a new tab" })
+map("n", "<leader>tf", "<cmd>ToggleTerm direction=float<CR>", { desc = "Toggle terminal in a floating window" })
+map("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal size=10<CR>", { desc = "Toggle terminal on a window at the bottom" })
+map('t', '<esc>', [[<C-\><C-n>]], { desc = "Change to normal mode" })
 
--- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+-- Buffer manipulations
+map("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", { desc = "Cycle to next buffer" })
+map("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Cycle to previous buffer" })
+map("n", "<leader>x", "<cmd>bd<CR> <BAR> <cmd>bn<CR>", { desc = "Close current buffer" })
+
+-- LSP code actions
+map("n", "<leader>ca", function() vim.lsp.buf.code_action() end, { desc = "LSP code actions" })
+map("n", "<leader>cn", function() vim.lsp.buf.rename() end, { desc = "Rename symbol" })
+map("n", "<leader>ch", function() vim.lsp.buf.hover() end, { desc = "Show symbol information" })
+map("n", "<leader>cf", function() vim.lsp.buf.format() end, { desc = "Format buffer" })
+map("n", "<leader>cdc", function() vim.lsp.buf.declaration() end, { desc = "Jump to declaration" })
+map("n", "<leader>cdf", function() vim.lsp.buf.definition() end, { desc = "Jump to definition" })
+map("n", "<leader>ci", function() vim.lsp.buf.implementation() end, { desc = "List implementations" })
+map("n", "<leader>cc", function() vim.lsp.buf.incoming_calls() end, { desc = "List incoming calls" })

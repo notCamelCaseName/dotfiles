@@ -1,10 +1,12 @@
-[shell]
+[terminal.shell]
 program = "/bin/zsh"
 
 [window]
 padding = { x = 4, y = 4 }
-opacity = 0.8
+opacity = 0.0
 
 [font]
 size = 16.0
 normal.family = "JetBrainsMono"
+
+[terminal]
