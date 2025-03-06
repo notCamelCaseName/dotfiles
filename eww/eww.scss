@@ -5,26 +5,12 @@
 }
 
 .transition {
-  background-color: $transition;
-  margin-left: 8px;
-  margin-right: 8px;
-}
-
-.transition-tl {
-  background-color: $widget-bg;
-  border-bottom-right-radius: 15px;
-}
-.transition-bl {
-  background-color: $widget-bg;
-  border-top-right-radius: 15px;
-}
-.transition-tr {
-  background-color: $widget-bg;
-  border-bottom-left-radius: 15px;
-}
-.transition-br {
-  background-color: $widget-bg;
-  border-top-left-radius: 15px;
+  background: radial-gradient($transition 1%, $text 49%, transparent 50%);
+  margin-left: 12px;
+  margin-right: 12px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  border-radius: 50%;
 }
 
 .main-container {
@@ -41,7 +27,7 @@
 .workspace-active {
   color: $widget-bg;
   background-color: $text;
-  border-radius: 50%;
+  border-radius: 0%;
 }
 
 .workspace-inactive {
@@ -102,7 +88,7 @@
   background: $widget-bg;
   padding-left: 8px;
   padding-right: 8px;
-  border-radius: 20px;
+  border-radius: 0px;
   border-style: solid;
   border-width: 1px;
   border-color: $container-border;
@@ -112,7 +98,7 @@
   background: $widget-bg;
   padding-left: 8px;
   padding-right: 8px;
-  border-radius: 20px;
+  border-radius: 0px;
   border-style: solid;
   border-width: 1px;
   border-color: $container-border;
@@ -122,7 +108,7 @@
   background: $widget-bg;
   padding-left: 8px;
   padding-right: 8px;
-  border-radius: 20px;
+  border-radius: 0px;
   border-style: solid;
   border-width: 1px;
   border-color: $container-border;

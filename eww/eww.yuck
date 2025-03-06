@@ -1,18 +1,5 @@
 (defwidget transition []
-  (box :width 30 :height 30 :class "transition"
-    (box :width 15 :height 30 :orientation "v"
-      (box  :class "transition-tl"
-      )
-      (box  :class "transition-bl"
-      )
-    )
-    (box :width 15 :height 30 :orientation "v"
-      (box  :class "transition-tr"
-      )
-      (box  :class "transition-br"
-      )
-    )
-  )
+  (box :width 32 :height 32 :class "transition")
 )
 
 ;; Workspaces 
@@ -25,7 +12,11 @@
 ;; Current window name
 (defpoll WINDOWNAME :interval "1s" "hyprctl activewindow -j")
 (defwidget windowname []
-  "${WINDOWNAME?.title ?: 'No active window'}"
+	(box :space-evenly false
+		(transition)
+		"${WINDOWNAME?.title ?: '_'}"
+		(transition)
+	)
 )
 
 ;; Time
@@ -119,9 +110,9 @@
 (defwindow bar-top
   :monitor 0
   :exclusive true
-  :geometry (geometry :x "8px"
-                      :y "8px"
-                      :width "1904px"
+  :geometry (geometry :x "0px"
+                      :y "0px"
+                      :width "1920px"
                       :height "32px"
                       :anchor "top center")
   (box  :class "main-container"
@@ -150,9 +141,9 @@
 (defwindow bar-bot
   :monitor 0
   :exclusive true
-  :geometry (geometry :x "8px"
-                      :y "8px"
-                      :width "1904px"
+  :geometry (geometry :x "0px"
+                      :y "0px"
+                      :width "1920px"
                       :height "32px"
                       :anchor "bottom center")
   (box  :class "main-container"

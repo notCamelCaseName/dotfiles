@@ -1,10 +1,11 @@
-$color1: #FDF3ED;
-$color2: #35221C;
-$color3: #C36017;
-$color4: #D5500D;
+$color1: #0D1629;
+$color2: #264C84;
+$color3: #4980C0;
+$color4: #689CDD;
+$color5: #E8F0F7;
 
-$bg: transparent;
-$text: $color2;
-$widget-bg: $color1;
-$container-border: $color3;
-$transition: $color4;
+$bg: $color1;
+$text: $color5;
+$widget-bg: $bg;
+$container-border: transparent;
+$transition: yellow;
